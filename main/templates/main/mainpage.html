@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1 class="contents">Django MTV - model, template, view</h1>
+  <div>⚡Template 폴더 </div>
+  <ul>
+    <li>유저에게 제공할 파일의 구조나 레이아웃을 한 데 모아 관리(HTML, CSS)</li>
+    <li>1. views.py : 원하는 url을 통해 mainpage가 보여지도록 렌더링 하는 역할</li>
+    <div class="codebox">def secondpage(request):
+      return render(request, 'main/secondpage.html') </div>
+    <li>2. urls.py : url에 해당하는 데이터 연결</li>
+    <div class="codebox"> Urlpatterns = [
+      Path(‘’, views.mainpage, name=”mainpage”) </div>
+    <li>3.html 페이지와 view 연결</li>
+    <div>콤마 빼먹으면 안돼</div>
+    <div>함수이름도 놓치면 안돼</div>
+  </ul>
+  <div>⚡Template 언어 </div>
+  <ul>
+    <li>view에 작성된 data 가져오기, 반복문 등 기능 수행</li>
+    <li>1. 템플릿 변수</li>
+    <div class="codebox"> 중괄호를 사용-> { }
+      변수명
+      변수명.속성명
+      list명.index
+      dict.key</div>
+    <li>2. 템플릿 태그</li>
+    <div class="codebox"> 중괄호 안 %를 사용
+      (1) 조건문
+      if 조건 %
+      else
+      endif
+      (2) 반복문
+      for num in nums
+      nums
+      endfor</div>
+  </ul>
+  <div>⚡Template 상속, static: 정적인 파일(css, image)을 저장하는 디렉토리 </div>
+  <ul>
+    <li>Base.html</li>
+    <div class="codebox">load static : html에서 사용되는 css
+    include 'shared/_navbar.html' : 분리한 _navbar.html을 base.html에 상속
+    endblock : block content와 짝을 이루는 블록의 끝</div>
+    <li>setting.py</li>
+    <div class="codebox">'DIRS' : [os.path.join(BASE_DIR, 'templates')] : 경로 추가
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')</div>
+    <li>secondpage.html</li>
+    <div class="codebox">extends 'base.html' : 상속해온 뒤
+    block content : 두번째 페이지 내용이 들어가는 부분</div>
+  </ul>
+</body>
+
+{% endblock %}
