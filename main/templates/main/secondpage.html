@@ -6,4 +6,17 @@
   <div>⚡영화 해리포터 시리즈에 나온 론의 사진으로 제가 아주 좋아하는 사진 중 하나입니다 ㅎㅅㅎ </div>
   <img src="{% static 'images/lone.jpeg' %}" alt="logo" width="200px">
   
+  <div>
+    {% for post in posts %}
+    <div>
+      <hr/>
+      <h3>{{post.title}}</h3>
+      {{post.writer}} | {{post.pub_date}}<br>
+      {{post.summary}}
+      <a href="{% url 'main:detail' post.id %}">자세히 보기</a>
+      <br>
+    </div>
+    {% endfor %}
+  </div>
+
 {% endblock %}
