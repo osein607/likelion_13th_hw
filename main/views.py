@@ -39,6 +39,7 @@ def update(request, id):
   update_post.writer = request.POST['writer']
   update_post.mbti = request.POST['mbti']
   update_post.content = request.POST['content']
+  update_post.image = request.FILES.get('image')
   update_post.pub_date = timezone.now()
   update_post.save()
   return redirect('main:detail', update_post.id)
