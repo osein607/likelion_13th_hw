@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div>
+  <h1>#{{tag}}가 달린 게시글</h1>
+  <hr>
+  <div>
+    {% for b in posts %}
+      <h3>{{b.title}}</h3>
+      {{b.writer}} | {{b.pub_date}}<br>
+      {{b.summary}}
+      <a href="{% url 'main:detail' b.id %}">자세히 보기</a>
+      <br>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
