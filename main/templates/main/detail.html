@@ -2,9 +2,14 @@
 {% load static %} 
 {% block content %} 
   <h3>{{post.title}}</h3>
+    <a href="{% url 'users:mypage' post.writer.id %}">작성자 : {{post.writer.id}}</a>
     작성자 : {{post.writer}} 
     성격유형 : {{post.mbti}} 
     날짜 : {{post.pub_date}} 
+    <a href="{% url 'main:likes' post.id %}">
+      {% if user in post.like.all %} 취소 {% else %} 좋아요 {% endif %}
+    </a>
+    {{post.like_count}}개
     <p>
       {% for tag in post.tags.all %}
        <a href="{% url 'main:tag-posts' tag.id %}">#{{ tag.name }}</a>
