@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 from main.models import Post
 
 def mypage(request, id):
-  user=get_object_or_404(User, pk=id)
-  posts = Post.objects.filter(writer=user)
+  profile_user=get_object_or_404(User, pk=id)
+  posts = Post.objects.filter(writer=profile_user)
 
   context = {
-    'user':user,
+    'profile_user':profile_user,
     'posts':posts,
   }
   return render(request, 'users/mypage.html', context)

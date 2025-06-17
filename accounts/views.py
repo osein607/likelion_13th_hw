@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Profile
+from datetime import datetime
 
 # Create your views here.
 def login(request):
@@ -30,13 +31,14 @@ def signup(request):
     if request.POST['password'] == request.POST['confirm']:
       user = User.objects.create_user(
         username=request.POST['username'],
-        password=request.POST['password']
+        password=request.POST['password'],
       )
-      # birth=request.POST['birth']
-      # hobby=request.POST['hobby']
 
-      # profile = Profile(user=user, birth=birth, hobby=hobby)
-      # profile.save()
+      profile = user.profile
+      birth_str = request.POST.get('birth')
+      birth = datetime.fromisoformat(birth_str).date()
+      profile.hobby = request.POST.get('hobby')
+      profile.save()
 
       auth.login(request, user)
       return redirect('/')

@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block content %}
-
-User : {{user}} <br>
-UserProfile : {{user.profile}} <br>
-<p>팔로워<br>{{ user.profile.followers.count}}명</p>
-<p>팔로잉<br>{{ user.profile.followings.count}}명</p>
+<h1>마이페이지에 오신 것을 환영합니다</h1>
+User : {{profile_user}} <br>
+UserProfile : {{profile_user.profile}} <br>
+<p>팔로워<br>{{ profile_user.profile.followers.count}}명</p>
+<p>팔로잉<br>{{ profile_user.profile.followings.count}}명</p>
 {% if request.user != user %}
-    {% if request.user.profile in user.profile.followers.all %}
-        <a href="{% url 'users:follow' user.id %}">
+    {% if request.user.profile in profile_user.profile.followers.all %}
+        <a href="{% url 'users:follow' profile_user.id %}">
             <button type="button" class="btn btn-outline-info">언팔로우</button>
         </a>
     {% else %}
-        <a href="{% url 'users:follow' user.id %}">
+        <a href="{% url 'users:follow' profile_user.id %}">
             <button type="button" class="btn btn-info">팔로우</button>
         </a>
     {% endif %}

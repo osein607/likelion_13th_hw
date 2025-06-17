@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 # Create your models here.
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
-  birth = models.DateField()
+  birth = models.DateField(null=True)
   hobby = models.TextField(null=True, max_length=30)
   nickname = models.TextField(max_length=10)
   followings = models.ManyToManyField("self", related_name="followers", symmetrical=False)
